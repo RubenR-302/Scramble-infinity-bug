@@ -1,0 +1,64 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    image: laravel_app
+    container_name: laravel_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html:cached
+      - vendor:/var/www/html/vendor
+      - node_modules:/var/www/html/node_modules
+    networks:
+      - laravel
+
+  web:
+    image: nginx:stable-alpine
+    container_name: laravel_nginx
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html:ro
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - laravel
+
+  db:
+    image: mysql:8.0
+    container_name: laravel_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: laravel
+      MYSQL_PASSWORD: secret
+    volumes:
+      - dbdata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - laravel
+
+  node:
+    image: node:18
+    container_name: laravel_node
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html:cached
+      - node_modules:/var/www/html/node_modules
+    command: ["tail", "-f", "/dev/null"]
+    networks:
+      - laravel
+
+volumes:
+  dbdata:
+  vendor:
+  node_modules:
+
+networks:
+  laravel:
+    driver: bridge

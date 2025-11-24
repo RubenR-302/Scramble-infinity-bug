@@ -14,8 +14,9 @@ WORKDIR /var/www/html
 # Configure git to treat the bind-mounted repo as safe to avoid 'dubious ownership' errors
 RUN git config --global --add safe.directory /var/www/html || true
 
-# Copy composer.json (safe for caching). Do not use shell redirections in COPY.
-COPY composer.json /var/www/html/
+# Copy composer files and auth.json for private repositories
+COPY composer.json composer.lock* /var/www/html/
+COPY auth.json /var/www/html/
 
 # Run composer install only if composer.json exists
 RUN if [ -f composer.json ]; then composer install --prefer-dist --no-interaction --no-progress || true; fi

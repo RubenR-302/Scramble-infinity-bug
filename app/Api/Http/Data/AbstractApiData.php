@@ -3,9 +3,6 @@
 namespace App\Api\Http\Data;
 
 use App\Api\Attributes\Data\HiddenResponse;
-use App\Api\Transformers\DateTransformer;
-use Carbon\Carbon;
-use DateTimeInterface;
 use Exception;
 use Illuminate\Support\Collection;
 use Override;
@@ -24,15 +21,6 @@ use Spatie\LaravelData\Support\Transformation\{TransformationContext, Transforma
 #[MapName(SnakeCaseMapper::class)]
 abstract class AbstractApiData extends Data
 {
-    /**
-     * These cast/transform classes will be applied by default
-     * for both casting and transforming
-     */
-    protected const array CAST_TRANSFORMS = [
-        DateTimeInterface::class => DateTransformer::class,
-        Carbon::class => DateTransformer::class,
-    ];
-
     /**
      * Override transform method, to apply custom transformers
      *

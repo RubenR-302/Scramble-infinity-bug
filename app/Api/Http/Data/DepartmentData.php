@@ -9,6 +9,8 @@ class DepartmentData extends AbstractApiData
         public string $name,
         public string $code,
         public ?BudgetData $budget = null,
+        /** @var CandidateData[] */
+        public ?array $candidates = null,
     ) {
     }
 }

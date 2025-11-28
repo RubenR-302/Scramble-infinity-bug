@@ -19,7 +19,7 @@ class ProjectController extends Controller
     {
         $projects = QueryBuilder::for(Project::class)
             ->allowedFilters(['name', 'status'])
-            ->allowedIncludes(['timeline'])
+            ->allowedIncludes(['timeline', 'candidates', 'candidates.address'])
             ->get();
 
         return ProjectData::collect($projects);
@@ -34,7 +34,7 @@ class ProjectController extends Controller
     {
         $project = QueryBuilder::for(Project::class)
             ->where('id', $id)
-            ->allowedIncludes(['timeline'])
+            ->allowedIncludes(['timeline', 'candidates', 'candidates.address'])
             ->firstOrFail();
 
         return ProjectData::from($project);

@@ -19,7 +19,7 @@ class DepartmentController extends Controller
     {
         $departments = QueryBuilder::for(Department::class)
             ->allowedFilters(['name', 'code'])
-            ->allowedIncludes(['budget'])
+            ->allowedIncludes(['budget', 'candidates', 'candidates.address'])
             ->get();
 
         return DepartmentData::collect($departments);
@@ -34,7 +34,7 @@ class DepartmentController extends Controller
     {
         $department = QueryBuilder::for(Department::class)
             ->where('id', $id)
-            ->allowedIncludes(['budget'])
+            ->allowedIncludes(['budget', 'candidates', 'candidates.address'])
             ->firstOrFail();
 
         return DepartmentData::from($department);

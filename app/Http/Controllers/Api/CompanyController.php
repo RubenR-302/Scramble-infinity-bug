@@ -19,7 +19,7 @@ class CompanyController extends Controller
     {
         $companies = QueryBuilder::for(Company::class)
             ->allowedFilters(['name', 'industry'])
-            ->allowedIncludes(['profile'])
+            ->allowedIncludes(['profile', 'employees', 'employees.contract', 'candidates', 'candidates.address'])
             ->get();
 
         return CompanyData::collect($companies);
@@ -34,7 +34,7 @@ class CompanyController extends Controller
     {
         $company = QueryBuilder::for(Company::class)
             ->where('id', $id)
-            ->allowedIncludes(['profile'])
+            ->allowedIncludes(['profile', 'employees', 'employees.contract', 'candidates', 'candidates.address'])
             ->firstOrFail();
 
         return CompanyData::from($company);

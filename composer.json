@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "dedoc/scramble": "^0.13.4",
+        "dedoc/scramble": "^0.13.5",
         "dedoc/scramble-pro": "^0.8.1",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",

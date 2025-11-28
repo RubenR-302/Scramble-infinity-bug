@@ -9,6 +9,8 @@ class ProjectData extends AbstractApiData
         public string $name,
         public string $status,
         public ?TimelineData $timeline = null,
+        /** @var CandidateData[] */
+        public ?array $candidates = null,
     ) {
     }
 }

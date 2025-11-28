@@ -19,7 +19,7 @@ class EmployeeController extends Controller
     {
         $employees = QueryBuilder::for(Employee::class)
             ->allowedFilters(['name', 'position'])
-            ->allowedIncludes(['contract'])
+            ->allowedIncludes(['contract', 'company', 'company.profile'])
             ->get();
 
         return EmployeeData::collect($employees);
@@ -34,7 +34,7 @@ class EmployeeController extends Controller
     {
         $employee = QueryBuilder::for(Employee::class)
             ->where('id', $id)
-            ->allowedIncludes(['contract'])
+            ->allowedIncludes(['contract', 'company', 'company.profile'])
             ->firstOrFail();
 
         return EmployeeData::from($employee);

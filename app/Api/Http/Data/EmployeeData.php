@@ -9,6 +9,7 @@ class EmployeeData extends AbstractApiData
         public string $name,
         public string $position,
         public ?ContractData $contract = null,
+        public ?CompanyData $company = null,
     ) {
     }
 }

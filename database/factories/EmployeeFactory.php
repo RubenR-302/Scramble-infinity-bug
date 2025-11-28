@@ -19,6 +19,7 @@ class EmployeeFactory extends Factory
         return [
             'name' => fake()->name(),
             'position' => fake()->jobTitle(),
+            'company_id' => \App\Models\Company::factory(),
         ];
     }
 }

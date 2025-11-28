@@ -19,7 +19,7 @@ class CandidateController extends Controller
     {
         $candidates = QueryBuilder::for(Candidate::class)
             ->allowedFilters(['name', 'email'])
-            ->allowedIncludes(['address'])
+            ->allowedIncludes(['address', 'company', 'company.profile', 'department', 'department.budget', 'project', 'project.timeline', 'employee', 'employee.contract'])
             ->get();
 
         return CandidateData::collect($candidates);
@@ -34,7 +34,7 @@ class CandidateController extends Controller
     {
         $candidate = QueryBuilder::for(Candidate::class)
             ->where('id', $id)
-            ->allowedIncludes(['address'])
+            ->allowedIncludes(['address', 'company', 'company.profile', 'department', 'department.budget', 'project', 'project.timeline', 'employee', 'employee.contract'])
             ->firstOrFail();
 
         return CandidateData::from($candidate);

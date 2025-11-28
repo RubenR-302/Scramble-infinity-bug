@@ -17,7 +17,12 @@ class CandidateFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'company_id' => \App\Models\Company::factory(),
+            'department_id' => \App\Models\Department::factory(),
+            'project_id' => \App\Models\Project::factory(),
+            'employee_id' => \App\Models\Employee::factory(),
         ];
     }
 }

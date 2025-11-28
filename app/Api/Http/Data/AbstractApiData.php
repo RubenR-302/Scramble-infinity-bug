@@ -21,6 +21,8 @@ use Spatie\LaravelData\Support\Transformation\{TransformationContext, Transforma
 #[MapName(SnakeCaseMapper::class)]
 abstract class AbstractApiData extends Data
 {
+    private const CAST_TRANSFORMS = [];
+
     /**
      * Override transform method, to apply custom transformers
      *

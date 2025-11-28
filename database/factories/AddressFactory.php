@@ -17,7 +17,10 @@ class AddressFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'candidate_id' => \App\Models\Candidate::factory(),
+            'street' => fake()->streetAddress(),
+            'city' => fake()->city(),
+            'country' => fake()->country(),
         ];
     }
 }

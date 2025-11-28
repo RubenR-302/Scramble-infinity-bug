@@ -9,6 +9,10 @@ class CandidateData extends AbstractApiData
         public string $name,
         public string $email,
         public ?AddressData $address = null,
+        public ?CompanyData $company = null,
+        public ?DepartmentData $department = null,
+        public ?ProjectData $project = null,
+        public ?EmployeeData $employee = null,
     ) {
     }
 }
